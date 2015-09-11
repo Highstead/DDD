@@ -1,0 +1,12 @@
+rabbitmq:
+  image: rabbitmq
+injester:
+  build: equipment_injester
+  ports: 
+    - "5000:5000"
+  links:
+    - rabbitmq
+consumer:
+  build: scorekeeper
+  links:
+    - rabbitmq
