@@ -1,26 +1,20 @@
-playerSvc:
-  restart: always
-  build: ./go-rest
-  expose: 
-    - "80"
-  links: 
-    - playersDb:playersDb
-  command: /usr/local/bin/gunicorn -w 2 -b :8000 app:app  
-  environment:
-    - DEBUG=true
-
-data:
+player-svc:
+  build: ./goSvc
+  working_dir: /go/src/player-svc
+  command: go run main.go
   volumes:
-    - /var/lib/postgresql
-  command: true
-  environment:
-    - DEBUG=true
-
-playerDB:
-  image: postgres:latest
-  volumes_from:
-    - data
+    - ./goSvc:/go/src/player-svc
+    - ./goSvc/ddd:/go/src/player-svc/ddd
   ports:
-    - "5432:5432" 
+    - 8080:8080
+#  links:
+#    - player-db
   environment:
+    - DB_NAME=players
     - DEBUG=true
+#player-db:
+#  image: postgres:latest
+#  ports:
+#    - "5432:5432"
+#  environment:
+#    - DEBUG=true
