@@ -39,13 +39,13 @@ var routes = Routes{
     Route{
         "TodoIndex",
         "GET",
-        "/todos",
-        TodoIndex,
+        "/players",
+        PlayerIndex,
     },
     Route{
         "TodoShow",
         "GET",
-        "/todos/{todoId}",
-        TodoShow,
+        "/players/{playerId}",
+        PlayerShow,
     },
 }
