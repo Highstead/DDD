@@ -12,9 +12,9 @@ player-svc:
   environment:
     - DB_NAME=players
     - DEBUG=true
-#player-db:
-#  image: postgres:latest
-#  ports:
-#    - "5432:5432"
-#  environment:
-#    - DEBUG=true
+player-db:
+  image: postgres:latest
+  ports:
+    - "5432:5432"
+  environment:
+    - DEBUG=true
