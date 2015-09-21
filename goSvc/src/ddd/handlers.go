@@ -7,6 +7,7 @@ import (
 
     "github.com/gorilla/mux"
     "time"
+    "ddd/internal/logic"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -31,7 +32,9 @@ func PlayerIndex(w http.ResponseWriter, r *http.Request) {
 func PlayerShow(w http.ResponseWriter, r *http.Request) {
     vars := mux.Vars(r)
     playerId := vars["playerId"]
+
     fmt.Fprintln(w, "Show Player:", playerId)
+    fmt.Print(logic.GetRows())
 }
 
 func PlayerSeason(w http.ResponseWriter, r *http.Request) {
