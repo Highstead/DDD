@@ -34,7 +34,7 @@ func PlayerShow(w http.ResponseWriter, r *http.Request) {
     playerId := vars["playerId"]
 
     fmt.Fprintln(w, "Show Player:", playerId)
-    fmt.Print(logic.GetRows())
+    fmt.Fprintln(w, logic.GetRows())
 }
 
 func PlayerSeason(w http.ResponseWriter, r *http.Request) {
