@@ -4,7 +4,7 @@ import (
     "log"
     "net/http"
 
-    "ddd"
+    "app/ddd"
 )
 
 func main() {

@@ -1,14 +1,19 @@
-package ddd
+package models
 
-import "time"
+import (
+    "time"
+)
+
 
 type Player struct {
-    playerId            int
+    //playerId            int
     PlayerCompute    string  `json:"playerId"`
     FName            string  `json:"firstName"`
     LName            string  `json:"lastName"`
+    Pos              string  `json:"pos"`
+    ImageId             int  `json:"imageid"`
+
     DOB           time.Time  `json:"DoB"`
-    ImageId             int  `json:"imageId"`
 }
 
 type Players []Player

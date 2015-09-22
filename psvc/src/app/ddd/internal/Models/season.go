@@ -1,4 +1,4 @@
-package ddd
+package models
 
 type Season struct {
     playerId           int

@@ -18,7 +18,51 @@ CREATE OR REPLACE FUNCTION fnGetPlayers() RETURNS TABLE (
     END;
 $$ LANGUAGE plpgsql;
 
+-- 'F': ['First_Name', 'Last_Name',  'End_Team', 'Age', 'Pos', 'GP', 'G', 'A', 'P', 'PPG', 'Sh-Per', 'ESTOI', 'Corsi'],
 CREATE OR REPLACE FUNCTION fnGetPlayerSeason (in_player_id integer) RETURNS
+  TABLE(
+  first_name text,
+  last_name text,
+  pos text,
+  image_id bigint,
+  Age datetime,
+  End_Team char(3),
+  GP smallint,
+  goals smallint,
+  points smallint,
+  assists smallint,
+  PPG double precision,
+  ESTOI decimal(5,2),
+  Corsi decimal(5,2),
+  Adj_Corsi decimal(5,2)
+  )
+
+AS $$
+    BEGIN
+    RETURN QUERY SELECT
+      -- s.player_id,
+      -- s.start_year,
+      p.first_name,
+      p.last_name,
+      p.pos,
+      p.image_id,
+      16 as Age,   -- todo: replace with age
+      s.End_Team,
+      s.GP,
+      s.ESG,    -- May have to be Sum( verify with nhl.com)
+      s.ESP,
+      s.ESA,
+      (s.ESP::float / s.GP) as PPG,
+      s.ESTOI,
+      s.Corsi,
+      s.Adj_Corsi
+    FROM player p inner join season s on p.id=s.player_id WHERE p.id = in_player_id;
+
+
+    END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION fnGetPlayerSeasonFull (in_player_id integer) RETURNS
   TABLE(
   player_id integer,
   start_year smallint,

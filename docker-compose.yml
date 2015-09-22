@@ -1,14 +1,13 @@
-player-svc:
-  build: ./goSvc
+psvc:
+  build: ./psvc/src/app
   working_dir: /go/src/
-  command: go run main.go
-  volumes:
-    - ./goSvc/src/main.go:/go/src/main.go
-    - ./goSvc/src/ddd:/go/src/ddd
+  command: go run app/main.go
+  volumes: 
+    - ./psvc/src/app/ddd:/go/src/app/ddd
   ports:
     - 8080:8080
-#  links:
-#    - player-db
+  links:
+    - player-db
   environment:
     - DB_NAME=players
     - DEBUG=true

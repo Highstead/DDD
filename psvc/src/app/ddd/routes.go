@@ -51,7 +51,7 @@ var routes = Routes{
     Route {
         "PlayerSeason",
         "GET",
-        "/players/{playerId}/seasons/{seasonId}",
+        "/players/{playerId}/seasons/",
         PlayerSeason,
     },
 }
